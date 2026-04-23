@@ -92,7 +92,8 @@ jobs:
             $webClient = New-Object System.Net.WebClient
             $webClient.DownloadFile('https://raw.githubusercontent.com/microsoft/AL-Go-Actions/v9.0/AL-Go-Helper.ps1', $ALGoHelperPath)
             . $ALGoHelperPath
-            Install-Module BcContainerHelper -Force -Scope CurrentUser -AllowClobber
+            Install-Module 7Zip4PowerShell -Force -Scope CurrentUser
+            Import-Module 7Zip4PowerShell
             Import-Module BcContainerHelper -Force
             DownloadAndImportBcContainerHelper
             $authContext = New-BcAuthContext -includeDeviceLogin -deviceLoginTimeout ([TimeSpan]::FromSeconds(0))

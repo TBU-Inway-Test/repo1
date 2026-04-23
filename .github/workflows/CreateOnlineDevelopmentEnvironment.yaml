@@ -94,7 +94,6 @@ jobs:
             . $ALGoHelperPath
             Install-Module 7Zip4PowerShell -Force -Scope CurrentUser
             Import-Module 7Zip4PowerShell
-            Import-Module BcContainerHelper -Force
             DownloadAndImportBcContainerHelper
             $authContext = New-BcAuthContext -includeDeviceLogin -deviceLoginTimeout ([TimeSpan]::FromSeconds(0))
             Add-Content -Encoding UTF8 -path $ENV:GITHUB_STEP_SUMMARY -value "AL-Go needs access to the Business Central Admin Center Api and could not locate a secret called $($settings.adminCenterApiCredentialsSecretName) (https://aka.ms/ALGoSettings#AdminCenterApiCredentialsSecretName)`n`n$($authContext.message)"

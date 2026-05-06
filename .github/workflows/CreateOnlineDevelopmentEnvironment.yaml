@@ -53,7 +53,7 @@ jobs:
         shell: powershell
         run: |
           $env:BcContainerHelperNoUpdate = 'true'
-          Install-Module BcContainerHelper -latest -Force -AllowClobber
+          Install-Module BcContainerHelper -Force -AllowClobber
           Import-Module BcContainerHelper
       
       - name: Dump Workflow Information
@@ -98,8 +98,8 @@ jobs:
             $ALGoHelperPath = "$([System.IO.Path]::GetTempFileName()).ps1"
             $webClient = New-Object System.Net.WebClient
             $webClient.DownloadFile('https://raw.githubusercontent.com/microsoft/AL-Go-Actions/v9.0/AL-Go-Helper.ps1', $ALGoHelperPath)
-            . $ALGoHelperPath
-            DownloadAndImportBcContainerHelper
+            . $ALGoHelperPath  # DownloadAndImportBcContainerHelper
+            Import-Module BcContainerHelper
             $authContext = New-BcAuthContext -includeDeviceLogin -deviceLoginTimeout ([TimeSpan]::FromSeconds(0))
             Add-Content -Encoding UTF8 -path $ENV:GITHUB_STEP_SUMMARY -value "AL-Go needs access to the Business Central Admin Center Api and could not locate a secret called $($settings.adminCenterApiCredentialsSecretName) (https://aka.ms/ALGoSettings#AdminCenterApiCredentialsSecretName)`n`n$($authContext.message)"
             Add-Content -Encoding UTF8 -Path $env:GITHUB_OUTPUT -Value "deviceCode=$($authContext.deviceCode)"

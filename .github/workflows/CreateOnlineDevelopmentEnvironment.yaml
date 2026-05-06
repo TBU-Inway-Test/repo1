@@ -15,15 +15,15 @@ on:
       reUseExistingEnvironment:
         description: Reuse environment if it exists?
         type: boolean
-        default: false
+        default: true
       directCommit:
         description: Direct Commit?
         type: boolean
-        default: false
+        default: true
       useGhTokenWorkflow:
         description: Use GhTokenWorkflow for PR/Commit?
         type: boolean
-        default: false
+        default: true
 
 permissions:
   actions: read
@@ -50,7 +50,7 @@ jobs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
     steps:
       - name: Install BcContainerHelper
-        shell: pwsh
+        shell: powershell
         run: |
           $env:BcContainerHelperNoUpdate = 'true'
           Install-Module BcContainerHelper -Force -AllowClobber

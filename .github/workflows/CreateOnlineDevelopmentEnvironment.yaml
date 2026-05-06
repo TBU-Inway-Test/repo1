@@ -53,7 +53,7 @@ jobs:
         shell: powershell
         run: |
           $env:BcContainerHelperNoUpdate = 'true'
-          Install-Module BcContainerHelper -Force -AllowClobber
+          Install-Module BcContainerHelper -latest -Force -AllowClobber
           Import-Module BcContainerHelper
       
       - name: Dump Workflow Information

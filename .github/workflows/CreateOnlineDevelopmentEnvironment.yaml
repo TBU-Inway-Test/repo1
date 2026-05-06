@@ -50,8 +50,9 @@ jobs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
     steps:
       - name: Install BcContainerHelper
-        shell: powershell
+        shell: pwsh
         run: |
+          $env:BcContainerHelperNoUpdate = 'true'
           Install-Module BcContainerHelper -Force -AllowClobber
           Import-Module BcContainerHelper
       
